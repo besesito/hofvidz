@@ -22,12 +22,11 @@ class SignUp(generic.CreateView):
         login(self.request, user)
         return view
 
-
 class CreateHall(generic.CreateView):
     model = Hall
     fields = ['title']
     template_name = 'halls/create_hall.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('dashboard')
     def form_valid(self, form):
         form.instance.user = self.request.user
         super(CreateHall, self).form_valid(form)
@@ -36,3 +35,14 @@ class CreateHall(generic.CreateView):
 class DetailHall(generic.DetailView):
     model = Hall
     template_name = 'halls/detail_hall.html'
+
+class UpdateHall(generic.UpdateView):
+    model = Hall
+    fields = ['title']
+    template_name = 'halls/update_hall.html'
+    success_url = reverse_lazy('dashboard')
+
+class DelateHall(generic.DeleteView):
+    model = Hall
+    template_name = 'halls/delate_hall.html'
+    success_url = reverse_lazy('dashboard')

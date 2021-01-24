@@ -17,7 +17,7 @@ urlpatterns = [
 
     path('halloffame/create', views.CreateHall.as_view(), name='create_hall'),
     path('halloffame/<int:pk>', views.DetailHall.as_view(), name='detail_hall'),
-    #path('halloffame/<int:pk>/update', views.UpdateHall.as_view(), name='update_hall'),
-    #path('halloffame/<int:pk>/delate', views.DelateHall.as_view(), name='delate_hall'),
+    path('halloffame/<int:pk>/update', views.UpdateHall.as_view(), name='update_hall'),
+    path('halloffame/<int:pk>/delate', views.DelateHall.as_view(), name='delate_hall'),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
