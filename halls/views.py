@@ -3,13 +3,32 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
-from .models import Hall
+from .models import Hall, Video
+from .forms import VideoForm, SearchForm
+
+YOUTUBE_API_KEY = 'AIzaSyAm-CaDQC3OYmpfq4cqpFspIC1-HfLyBj8'
+
 
 def home(request):
     return render(request, 'halls/home.html')
 
 def dashboard(request):
     return render(request, 'halls/dashboard.html')
+
+def add_video(request, pk):
+    form = VideoForm()
+    search = SearchForm()
+    if request.method == 'POST':
+        filled_form = VideoForm(request.POST)
+        if filled_form.is_valid():
+            video = Video()
+            video.url = filled_form.cleaned_data['url']
+            video.title = filled_form.cleaned_data['title']
+            video.youtube_id = filled_form.cleaned_data['youtube_id']
+            video.hall = Hall.objects.get(pk=pk)
+            video.save()
+    return render(request, 'halls/add_video.html', {'form': form, 'search':search})
+
 
 class SignUp(generic.CreateView):
     form_class = UserCreationForm
