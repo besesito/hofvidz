@@ -1,4 +1,15 @@
 ### Django ###
+.idea/hofvidz.iml
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+db.sqlite3
+halls/__pycache__/
+halls/migrations/0001_initial.py
+halls/migrations/__pycache__/
+hofvidz/__pycache__/
+static/
 *.log
 *.pot
 *.pyc
